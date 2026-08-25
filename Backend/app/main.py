@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from sqlalchemy import text
 from app.database import Base,engine
 from app.models.users import User
-
+from app.routes.users import router as user_router
 app=FastAPI()
 
 Base.metadata.create_all(bind=engine)
@@ -10,6 +10,8 @@ Base.metadata.create_all(bind=engine)
 @app.get("/")
 def home():
     return {"message":"API is running"}
+
+app.include_router(user_router)
 
 @app.get("/test-db")
 def test_db():
