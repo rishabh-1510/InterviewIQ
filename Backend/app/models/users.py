@@ -1,5 +1,5 @@
-from sqlalchemy import Column,Integer,String
-
+from sqlalchemy import Column,Integer,String,DateTime
+from datetime import datetime
 from app.database import Base
 
 class User(Base):
@@ -9,5 +9,5 @@ class User(Base):
     name = Column(String,nullable=False)
     email = Column(String, unique=True, index=True,nullable=False)
     password=Column(String,nullable=False)
-
+    createdAt=Column(DateTime,nullable=False,default=datetime.utcnow)
     
